@@ -5,17 +5,16 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-
 st.title("Uniswap V3 Impermanent Loss")
 st.subheader("Input")
 
-P = st.number_input('Current Price', value=1200.00)
+P = st.number_input('Current Price')
 col1, col2 = st.columns(2)
-P_min = col1.number_input("Min Price",value=1000.00)
-P_max = col2.number_input("Max Price",value=1200.00)
+P_min = col1.number_input('Min Price')
+P_max = col2.number_input('Max Price')
 
 y = st.number_input('Token1 in Pool', value=100.00)
-L=(np.sqrt(P_min)/P + 1/np.sqrt(P))/(1-P_min/P)*y                                                                                 
+L=(np.sqrt(P_min)/min(P, P_max)+1/np.sqrt(min(P, P_max)))/(1-P_min/min(P,P_max))*y                                                                               
 x=max(0,(np.sqrt(P_min)/P - 1/np.sqrt(P_max))*L+y/P)
 st.write("Token0 in Pool:")
 st.text(x)
