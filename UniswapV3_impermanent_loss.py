@@ -37,6 +37,8 @@ df["Impermanent Loss"] = loss
 fig = px.line(df, x="Price", y="Impermanent Loss", title='Impermanent Loss Chart (Token1 denominated)')
 fig.update_xaxes(title_text='Price')
 fig.update_yaxes(title_text='Impermanent Loss')
+fig.add_vline(x=P_min, line_width=3, line_dash="dash", line_color="red")
+fig.add_vline(x=P_max, line_width=3, line_dash="dash", line_color="red")
 st.plotly_chart(fig,use_container_width=True)
 
 st.subheader("PnL Calculation")
